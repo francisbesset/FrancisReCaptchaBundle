@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="francis_recaptcha.validator.recaptcha.class">Francis\Bundle\ReCaptchaBundle\Validator\Constraints\ReCaptchaValidator</parameter>
+    </parameters>
+
+    <services>
+        <service id="francis_recaptcha.validator.recaptcha" class="%francis_recaptcha.validator.recaptcha.class%">
+            <tag name="validator.constraint_validator" alias="Francis\Bundle\ReCaptchaBundle\Validator\Constraints\ReCaptchaValidator" />
+            <tag name="monolog.logger" channel="recaptcha" />
+            <argument type="service" id="francis_recaptcha.recaptcha" />
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="logger" />
+        </service>
+    </services>
+</container>

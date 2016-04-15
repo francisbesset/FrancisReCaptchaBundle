@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>An internal error prevented to check that you are not a robot.</source>
+                <target>Une erreur interne empêche de vérifier que vous n'êtes pas un robot.</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>You should specify that you are not a robot.</source>
+                <target>Vous devez indiquer que vous n'êtes pas un robot.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

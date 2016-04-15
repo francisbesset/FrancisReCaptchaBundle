@@ -1,0 +1,43 @@
+{% block recaptcha_widget %}
+{% spaceless %}
+    <script src="https://www.google.com/recaptcha/api.js?hl={{ locale }}" type="text/javascript"></script>
+    {{ block('recaptcha_widget_noscript') }}
+    <div class="g-recaptcha" {{ block('recaptcha_widget_attributes') }}></div>
+{% endspaceless %}
+{% endblock %}
+
+{# https://developers.google.com/recaptcha/docs/display#render_param #}
+{% block recaptcha_widget_attributes %}
+    {% if theme is not null %}data-theme="{{ theme }}"{% endif %}
+    {% if type is not null %}data-type="{{ type }}"{% endif %}
+    {% if size is not null %}data-size="{{ size }}"{% endif %}
+    {% if tabindex is not null %}data-tabindex="{{ tabindex }}"{% endif %}
+    {% if callback is not null %}data-callback="{{ callback }}"{% endif %}
+    {% if expired_callback is not null %}data-expired-callback="{{ expired_callback }}"{% endif %}
+    {% if sitekey is not null %}data-sitekey="{{ sitekey }}"{% endif %}
+{% endblock %}
+
+{# https://developers.google.com/recaptcha/docs/faq#no_js #}
+{% block recaptcha_widget_noscript %}
+<noscript>
+  <div>
+    <div style="width: 302px; height: 422px; position: relative;">
+      <div style="width: 302px; height: 422px; position: absolute;">
+        <iframe src="https://www.google.com/recaptcha/api/fallback?hl={{ locale }}&amp;k={{ sitekey }}"
+                frameborder="0" scrolling="no"
+                style="width: 302px; height:422px; border-style: none;">
+        </iframe>
+      </div>
+    </div>
+    <div style="width: 300px; height: 60px; border-style: none;
+                   bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                   background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+      <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                   class="g-recaptcha-response"
+                   style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                          margin: 10px 25px; padding: 0px; resize: none;" >
+      </textarea>
+    </div>
+  </div>
+</noscript>
+{% endblock %}
