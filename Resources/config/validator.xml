@@ -14,7 +14,7 @@
             <tag name="monolog.logger" channel="recaptcha" />
             <argument type="service" id="francis_recaptcha.recaptcha" />
             <argument type="service" id="request_stack" />
-            <argument type="service" id="logger" />
+            <argument type="service" id="logger" on-invalid="ignore" />
         </service>
     </services>
 </container>
