@@ -14,6 +14,8 @@ class Response extends BaseResponse
 
     const INVALID_RESPONSE = 'invalid-input-response';
 
+    const INVALID_JSON = 'invalid-json';
+
     public function hasSecretError()
     {
         foreach ($this->getErrorCodes() as $code) {
@@ -21,5 +23,12 @@ class Response extends BaseResponse
                 return true;
             }
         }
+
+        return false;
+    }
+
+    public function isInvalidJson()
+    {
+        return in_array(static::INVALID_JSON, $this->getErrorCodes(), true);
     }
 }

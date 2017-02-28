@@ -70,7 +70,7 @@ class ReCaptchaValidator extends ConstraintValidator
             $msg = 'ReCaptcha fail';
             $context['error_code'] = $response->getErrorCodes();
 
-            if ($response instanceof Response && $response->hasSecretError()) {
+            if ($response instanceof Response && ($response->hasSecretError() || $response->isInvalidJson())) {
                 $logLevel = 'error';
             }
         }
