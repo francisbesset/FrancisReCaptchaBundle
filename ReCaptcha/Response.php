@@ -16,6 +16,11 @@ class Response extends BaseResponse
 
     const INVALID_JSON = 'invalid-json';
 
+    public function hasInternalError()
+    {
+        return $this->hasInvalidJson() || $this->hasSecretError();
+    }
+
     public function hasSecretError()
     {
         foreach ($this->getErrorCodes() as $code) {
@@ -27,7 +32,7 @@ class Response extends BaseResponse
         return false;
     }
 
-    public function isInvalidJson()
+    public function hasInvalidJson()
     {
         return in_array(static::INVALID_JSON, $this->getErrorCodes(), true);
     }

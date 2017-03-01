@@ -43,7 +43,7 @@ class ReCaptchaValidator extends ConstraintValidator
         $this->log($response);
 
         if (!$response->isSuccess()) {
-            $violationMessage = $response->hasSecretError() ? $constraint->secretMessage : $constraint->invalidMessage;
+            $violationMessage = $response->hasInternalError() ? $constraint->internalMessage : $constraint->invalidMessage;
             $this->context->buildViolation($violationMessage)->addViolation();
         }
     }
@@ -70,7 +70,8 @@ class ReCaptchaValidator extends ConstraintValidator
             $msg = 'ReCaptcha fail';
             $context['error_code'] = $response->getErrorCodes();
 
-            if ($response instanceof Response && ($response->hasSecretError() || $response->isInvalidJson())) {
+            if ($response instanceof Response && $response->hasInternalError()) {
+                $msg = 'ReCaptcha error';
                 $logLevel = 'error';
             }
         }
