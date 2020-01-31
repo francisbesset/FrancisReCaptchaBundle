@@ -23,7 +23,7 @@ class FrancisReCaptchaExtension extends Extension
         $container->setParameter('francis_recaptcha.secret_key', $config['secret_key']);
 
         $resources = $container->getParameter('twig.form.resources');
-        $resources[] = 'FrancisReCaptchaBundle:Form:recaptcha_layout.html.twig';
+        $resources[] = '@FrancisReCaptcha/Form/recaptcha_layout.html.twig';
         $container->setParameter('twig.form.resources', $resources);
     }
 
